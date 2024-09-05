@@ -3,11 +3,18 @@ import './styles.css';
 // const style = require('./styles.css');
 import rabbit from './rabbit_large.webp';
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.innerHTML = `<img src="${rabbit}"/>`;
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.body.innerHTML = `<img src="${rabbit}"/>`;
+// });
 
-console.log(plus(10, 5));
+let env;
+console.log(process.env.NODE_ENV);
+if( process.env.NODE_ENV === 'development') {
+    env = dev;
+} else {
+    env = pro;
+}
+console.log(env);
 
 function minus(a, b) {
     return a - b;

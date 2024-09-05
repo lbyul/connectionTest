@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const childProcess = require('child_process');
+require('dotenv').config();
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
 
     entry: {
         main: path.resolve('./src/app.js')
@@ -42,11 +44,15 @@ module.exports = {
     },
     plugins: [
         new webpack.BannerPlugin({
-            banner: `
-                Commit version : ${childProcess.execSync('git rev-parse --short HEAD')}
-                Committer : ${childProcess.execSync('git config user.name')}
-                Commit Date : ${new Date().toLocaleString()}
-            `
-        })
+            banner: `마지막 빌드 시간은 ${new Date().toLocaleString()} 입니다.`
+        }),
+        new webpack.DefinePlugin({            
+            dev: JSON.stringify(process.env.DEV_API),
+            pro: JSON.stringify(process.env.PRO_API)
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new CleanWebpackPlugin()
     ]
 }
