@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            position: relative;
+        }
+        button::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 70px;
+            height: 70px;
+            background-image: url(sp_main.png);
+            background-size: 443px 424px;
+            background-position: -20px -20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <script src="app.js"></script> -->
+    <!-- <script src="plus.js"></script> -->
+
+    <script src="../dist/main.js"></script>
+    <button>네이버버튼</button>
+</body>
+</html>
